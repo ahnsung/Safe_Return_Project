@@ -356,6 +356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 268140399}
   - component: {fileID: 268140400}
+  - component: {fileID: 268140401}
   m_Layer: 0
   m_Name: DungeonManager
   m_TagString: Untagged
@@ -395,6 +396,18 @@ MonoBehaviour:
   startRoom: {x: 2, y: 2}
   uiManager: {fileID: 117336928}
   minimapUI: {fileID: 417786229}
+--- !u!114 &268140401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268140398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97fa97cd0c65a34d94f2f3e42c2d0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &417786228
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97fa97cd0c65a34d94f2f3e42c2d0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonManager: {fileID: 268140400}
 --- !u!1 &542617773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,14 +1022,8 @@ MonoBehaviour:
   target: {fileID: 1836735077}
   followSpeed: 5
   offset: {x: 0, y: 0, z: -10}
-  followX: 1
-  followY: 0
-  useXClamp: 1
   minX: 9.8
   maxX: 47
-  useYClamp: 0
-  minY: -5
-  maxY: 5
 --- !u!1 &760911014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2608,7 +2614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 2125530131}
-  fadeDuration: 0.35
+  duration: 0.3
 --- !u!1 &2129873472
 GameObject:
   m_ObjectHideFlags: 0

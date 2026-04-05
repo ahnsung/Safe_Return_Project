@@ -17,7 +17,6 @@ public class MenuManager : MonoBehaviour
             warningPanel.SetActive(false);
     }
 
-    // Continue 버튼
     public void ContinueGame()
     {
         if (SaveManager.Instance != null && SaveManager.Instance.HasSave())
@@ -26,38 +25,47 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    // New Game 버튼
     public void NewGame()
     {
         if (SaveManager.Instance != null && SaveManager.Instance.HasSave())
         {
-            // 저장 데이터가 있으면 경고창
             warningPanel.SetActive(true);
         }
         else
         {
-            // 저장 데이터가 없으면 바로 새 게임 시작
             PlayerPrefs.SetInt("AfterCutsceneGoToCharacterSelect", 1);
+            PlayerPrefs.Save();
             SceneManager.LoadScene("StartScene");
         }
     }
 
-    // 경고창 Yes
     public void ConfirmNewGame()
     {
         if (SaveManager.Instance != null)
         {
             SaveManager.Instance.DeleteSave();
         }
+        else
+        {
+            // 혹시 SaveManager가 없으면 직접 삭제
+            PlayerPrefs.DeleteKey("HasSave");
+            PlayerPrefs.DeleteKey("CutscenePlayed");
+            PlayerPrefs.DeleteKey("SelectedCharacter");
+            PlayerPrefs.DeleteKey("PlayerName");
+            PlayerPrefs.DeleteKey("ROOM_X");
+            PlayerPrefs.DeleteKey("ROOM_Y");
+            PlayerPrefs.DeleteKey("VISITED");
+            PlayerPrefs.DeleteKey("AfterCutsceneGoToCharacterSelect");
+            PlayerPrefs.Save();
+        }
 
-        // 컷씬 끝나면 CharacterSelectScene으로 바로 가기 위한 플래그
         PlayerPrefs.SetInt("AfterCutsceneGoToCharacterSelect", 1);
+        PlayerPrefs.Save();
 
         warningPanel.SetActive(false);
         SceneManager.LoadScene("StartScene");
     }
 
-    // 경고창 No
     public void CancelNewGame()
     {
         warningPanel.SetActive(false);
